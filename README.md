@@ -2,6 +2,9 @@
 
 Note: This website taps into your localStorage. You may enter 'localStorage.clear()' in the console to delete the stored data.
 
+Resources used may be referenced <a href='https://jspoh.github.io/projects/demo-websites/e-commerce/credits.html'>here</a>
+
+
 <hr>
 
 <img src='lib/homepage.PNG'>
