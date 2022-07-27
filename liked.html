@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <header>
+    <header id="desktop">
         <img src="lib/brand-image.png" alt="brand image" class="logo">
         <nav>
             <div class="left">
@@ -29,10 +29,24 @@
                 </div>
             </div>
             <div class="right">
-                <a href="liked.html"><button id="liked" class="nav">Liked</button></a>
-                <a href="cart.html"><button id="cart" class="nav">Cart</button></a>
+                <a href="liked.html"><img src="lib/whiteheart.png" alt="" class="icon"></a>
+                <a href="cart.html"><img src="lib/addcart.png" alt="" class="icon"></a>
             </div>
         </nav>
+    </header>
+
+    <header id="mobile">
+        <nav class="mobile">
+            <img src="lib/brand-image.png" alt="brand image" class="logo">
+            <img src="lib/menu.png" alt="" class="logo" id="menuBtn">
+        </nav>
+        <div class="mddContainer">
+            <a href="products.html"><button class="mdd">Products</button></a>
+            <a href="pianos.html"><button class="mdd">Pianos</button></a>
+            <a href="guitars.html"><button class="mdd">Guitars</button></a>
+            <a href="liked.html"><button class="mdd">Liked items</button></a>
+            <a href="cart.html"><button class="mdd">View cart</button></a>
+        </div>
     </header>
 
     <h1 class="topic">Liked items</h1>

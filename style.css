@@ -139,6 +139,12 @@ button.shop:hover {
 .left {
     display: flex;
     justify-content: center;
+    width: 200px;
+}
+.right {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
 }
 .dropdownContent {
     position: absolute;
@@ -318,4 +324,35 @@ div.iconWrapper {
     background-color: rgb(255, 207, 119);
     cursor: pointer;
     transition: ease all 0.3s;
+}
+
+/* mobile compatibility */
+.mobile {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+.mddContainer {
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    bottom: 0px;
+
+    background-color: rgb(173, 103, 24);
+    opacity: 0;
+    transform: translateX(100vw);
+    transition: ease all 1s;
+}
+.mdd {
+    width: 100vw;
+    height: 18vh;
+    background: transparent;
+    border: none;
+    border-top: 1px solid black;
+}
+.mddActive {
+    opacity: 100;
+    transform: translateX(0px);
+    transition: ease all 1s;
 }

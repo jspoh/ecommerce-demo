@@ -28,6 +28,7 @@ if (localStorage.cartItems !== undefined) {
         }
     }
 }
+else {}
 
 for (let i=0; i<likedItems.length; i++) {
         for (let j=0; j<totalCards; j++) {
@@ -169,9 +170,8 @@ try {
         ulLiked.append(newLi);   
     }
 }
-catch (e) {
-    console.log(e);
-
+catch (error) {}
+try {
     /* adding items to cart page */
     const ulCart = document.querySelector('#cartItemsList');
 
@@ -193,6 +193,7 @@ catch (e) {
         ulCart.append(newLi);   
     }
 }
+catch (error) {}
 
 /* clicking on item brings back to page */
 const allLi = document.querySelectorAll('.doneList');
@@ -223,14 +224,40 @@ for (let li of allLi) {
 }
 
 /* checkout */
-document.querySelector('#checkoutBtn').addEventListener('click', (e)=>{
-    let cartCost = 0;
-    let cartContent = [];
-    for (let i=0;i<cartItems.length;i++) {
-        cartCost += parseInt(cartItems[i][1]);
-        cartContent.push(`${i+1}. ${cartItems[i][0]}`);
-    }
-    cartContent = cartContent.join().replaceAll(',','\n');
+try {
+    document.querySelector('#checkoutBtn').addEventListener('click', (e)=>{
+        let cartCost = 0;
+        let cartContent = [];
+        for (let i=0;i<cartItems.length;i++) {
+            cartCost += parseInt(cartItems[i][1]);
+            cartContent.push(`${i+1}. ${cartItems[i][0]}`);
+        }
+        cartContent = cartContent.join().replaceAll(',','\n');
 
-    alert(`Checkout success!\n\nYou have paid $${cartCost} and purchased the following items:\n${cartContent}`)
+        alert(`Checkout success!\n\nYou have paid $${cartCost} and purchased the following item(s):\n${cartContent}`)
+        
+        cartItems = [];
+        localStorage.cartItems = undefined;
+        window.location.reload();
+    })
+}
+catch (typeerror) {console.log(typeerror);}
+
+/* mobile compatibility */
+const checkScreenWidth = ()=>{
+    if (window.innerWidth < 600) {
+        document.querySelector('#desktop').classList.add('noDisplay');
+        
+    }
+    else {document.querySelector('#mobile').classList.add('noDisplay');}
+
+    menuBtn = document.querySelector('#menuBtn');
+    menuBtn.addEventListener('click', (e)=>{
+
+    })
+}
+checkScreenWidth();
+const mddBtn = document.querySelector('#menuBtn');
+mddBtn.addEventListener('click', ()=>{
+    document.querySelector('.mddContainer').classList.toggle('mddActive');
 })
