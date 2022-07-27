@@ -15,6 +15,8 @@ When hovering over the category tab, a pop-up menu will appear - prompting the u
 
 The white heart will turn red when clicked on and will add the related item to the liked items list. The cart with a plus sign will add the item selected into the user's cart when clicked on while changing the plus sign to a cross. The cart with the cross sign can be clicked on to remove the item from cart.
 
+On hover, the product card will expand and show more information for a quick overview. I did not build individual pages for the products.
+
 <br>
 
 <img src='lib/likedpage.PNG'>
