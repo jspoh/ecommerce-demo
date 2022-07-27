@@ -35,8 +35,12 @@ This page consolidates the user's cart items and also allows the user to checkou
 
 Upon checking out, this modal will pop up to give the user a summary. A version will be logged in the console as well.
 
+The user's cart information will be wiped upon checking out successfully.
+
 <br>
 
 <img src='lib/consolelocalstorage.PNG'>
 
 All liked/cart items are saved to the localStorage so that the data may survive page refreshes and even the os rebooting. The user will have to enter localStorage.clear() into the console or clear their browser's memory to delete this data.
+
+In the event where the localStorage data is not cleared, this website will always show the most updated liked items list and products in cart.
