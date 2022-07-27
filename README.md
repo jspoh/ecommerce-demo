@@ -37,6 +37,6 @@ Upon checking out, this modal will pop up to give the user a summary. A version 
 
 <br>
 
-<img src='consolelocalstorage.PNG'>
+<img src='lib/consolelocalstorage.PNG'>
 
 All liked/cart items are saved to the localStorage so that the data may survive page refreshes and even the os rebooting. The user will have to enter localStorage.clear() into the console or clear their browser's memory to delete this data.
