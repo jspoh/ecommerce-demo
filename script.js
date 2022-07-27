@@ -95,49 +95,142 @@ for (let card of cards) {
 
 for (let i=0; i<totalCards; i++) {
     /*add*/
-    document.querySelector(`#product${i}like`).addEventListener('click', (e)=>{
-        let likedItemName = document.querySelector(`#product${i}title`).innerText;
-        let likedItemPrice = document.querySelector(`#product${i}price`).innerText.slice(1);
-        likedItems.push([likedItemName, likedItemPrice]);
-        localStorage.likedItems = likedItems;
+    try {
+        document.querySelector(`#product${i}like`).addEventListener('click', (e)=>{
+            let likedItemName = document.querySelector(`#product${i}title`).innerText;
+            let likedItemPrice = document.querySelector(`#product${i}price`).innerText.slice(1);
+            likedItems.push([likedItemName, likedItemPrice]);
+            localStorage.likedItems = likedItems;
 
-        document.querySelector(`#product${i}like`).classList.add('noDisplay');
-        document.querySelector(`#product${i}liked`).classList.remove('noDisplay');
-    })
-    document.querySelector(`#product${i}cart`).addEventListener('click', (e)=>{
-        let cartItemName = document.querySelector(`#product${i}title`).innerText;
-        let cartItemPrice = document.querySelector(`#product${i}price`).innerText.slice(1);
-        cartItems.push([cartItemName, cartItemPrice]);
-        localStorage.cartItems = cartItems;
+            document.querySelector(`#product${i}like`).classList.add('noDisplay');
+            document.querySelector(`#product${i}liked`).classList.remove('noDisplay');
+        })
+        document.querySelector(`#product${i}cart`).addEventListener('click', (e)=>{
+            let cartItemName = document.querySelector(`#product${i}title`).innerText;
+            let cartItemPrice = document.querySelector(`#product${i}price`).innerText.slice(1);
+            cartItems.push([cartItemName, cartItemPrice]);
+            localStorage.cartItems = cartItems;
 
-        document.querySelector(`#product${i}cart`).classList.add('noDisplay');
-        document.querySelector(`#product${i}carted`).classList.remove('noDisplay');
-    })
-    /*remove*/
-    document.querySelector(`#product${i}liked`).addEventListener('click', (e)=>{
-        let unlikedItemName = document.querySelector(`#product${i}title`).innerText;
-        for (let j=0; j<totalCards; j++) {
-            if (likedItems[j][0] === unlikedItemName) {
-                likedItems.splice(j, 1);
-                break;
+            document.querySelector(`#product${i}cart`).classList.add('noDisplay');
+            document.querySelector(`#product${i}carted`).classList.remove('noDisplay');
+        })
+        /*remove*/
+        document.querySelector(`#product${i}liked`).addEventListener('click', (e)=>{
+            let unlikedItemName = document.querySelector(`#product${i}title`).innerText;
+            for (let j=0; j<totalCards; j++) {
+                if (likedItems[j][0] === unlikedItemName) {
+                    likedItems.splice(j, 1);
+                    break;
+                }
+            }
+            localStorage.likedItems = likedItems;
+
+            document.querySelector(`#product${i}liked`).classList.add('noDisplay');
+            document.querySelector(`#product${i}like`).classList.remove('noDisplay');
+        })
+        document.querySelector(`#product${i}carted`).addEventListener('click', (e)=>{
+            let uncartItemName = document.querySelector(`#product${i}title`).innerText;
+            for (let j=0; j<totalCards; j++) {
+                if (cartItems[j][0] === uncartItemName) {
+                    cartItems.splice(j, 1);
+                    break;
+                }
+            }
+            localStorage.cartItems = cartItems;
+
+            document.querySelector(`#product${i}carted`).classList.add('noDisplay');
+            document.querySelector(`#product${i}cart`).classList.remove('noDisplay');
+        })
+    }
+    catch (error) {console.log(error);}
+}
+
+
+
+/* adding items to liked page */
+const ulLiked = document.querySelector('#likedItemsList');
+
+try {
+    for (let i=0;i<likedItems.length;i++) {
+        const newLi = document.createElement('li');
+        const newP = document.createElement('p');
+        const newSpan = document.createElement('span');
+
+        newP.innerHTML = likedItems[i][0];
+        newSpan.innerHTML = '$' + likedItems[i][1];
+
+        newP.classList.add('likedTitle');
+        newSpan.classList.add('likedPrice');
+        newLi.classList.add('doneList');
+
+        newLi.append(newP);
+        newLi.append(newSpan);
+
+        ulLiked.append(newLi);   
+    }
+}
+catch (e) {
+    console.log(e);
+
+    /* adding items to cart page */
+    const ulCart = document.querySelector('#cartItemsList');
+
+    for (let i=0;i<cartItems.length;i++) {
+        const newLi = document.createElement('li');
+        const newP = document.createElement('p');
+        const newSpan = document.createElement('span');
+
+        newP.innerHTML = cartItems[i][0];
+        newSpan.innerHTML = '$' + cartItems[i][1];
+
+        newP.classList.add('likedTitle');
+        newSpan.classList.add('likedPrice');
+        newLi.classList.add('doneList');
+
+        newLi.append(newP);
+        newLi.append(newSpan);
+
+        ulCart.append(newLi);   
+    }
+}
+
+/* clicking on item brings back to page */
+const allLi = document.querySelectorAll('.doneList');
+for (let li of allLi) {
+    let itemType;
+    li.addEventListener('click', (e)=>{
+        try {
+            itemType = e.target.children[0].innerText[1];
+        }
+        catch (error) {
+            console.log(`${error}1`);
+            try {
+                itemType = e.path[0].innerText[1];
+            }
+            catch (error) {
+                console.log(`${error}2`);
+                try {
+                    itemType = e.target.previousSibling.textContent[1];
+                }
+                catch (error) {console.log(`${error}3`);}
             }
         }
-        localStorage.likedItems = likedItems;
-
-        document.querySelector(`#product${i}liked`).classList.add('noDisplay');
-        document.querySelector(`#product${i}like`).classList.remove('noDisplay');
-    })
-    document.querySelector(`#product${i}carted`).addEventListener('click', (e)=>{
-        let uncartItemName = document.querySelector(`#product${i}title`).innerText;
-        for (let j=0; j<totalCards; j++) {
-            if (cartItems[j][0] === uncartItemName) {
-                cartItems.splice(j, 1);
-                break;
-            }
-        }
-        localStorage.cartItems = cartItems;
-
-        document.querySelector(`#product${i}carted`).classList.add('noDisplay');
-        document.querySelector(`#product${i}cart`).classList.remove('noDisplay');
+        
+        if (itemType === 'P') {window.location.href='pianos.html';}
+        else if (itemType === 'G') {window.location.href='guitars.html';}
+        else {console.log(`Something went wrong\n${itemType}`);}
     })
 }
+
+/* checkout */
+document.querySelector('#checkoutBtn').addEventListener('click', (e)=>{
+    let cartCost = 0;
+    let cartContent = [];
+    for (let i=0;i<cartItems.length;i++) {
+        cartCost += parseInt(cartItems[i][1]);
+        cartContent.push(`${i+1}. ${cartItems[i][0]}`);
+    }
+    cartContent = cartContent.join().replaceAll(',','\n');
+
+    alert(`Checkout success!\n\nYou have paid $${cartCost} and purchased the following items:\n${cartContent}`)
+})
