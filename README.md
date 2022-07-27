@@ -5,6 +5,9 @@ Note: This website taps into your localStorage. You may enter 'localStorage.clea
 Resources used may be referenced <a href='https://jspoh.github.io/projects/demo-websites/e-commerce/credits.html'>here</a>
 
 
+## Please start off with the products.html file
+
+
 <hr>
 
 <img src='lib/homepage.PNG'>
