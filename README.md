@@ -1,4 +1,4 @@
-# Website may be visited <a href='https://jspoh.github.io/projects/demo-websites/e-commerce/products.html'>here</a>
+# Website may be visited <a href='https://jspoh.github.io/ecommerce-demo'>here</a>
 
 Note: This website taps into your localStorage. You may enter 'localStorage.clear()' in the console to delete the stored data.
 
